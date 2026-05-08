@@ -288,7 +288,10 @@ const rawTools: Tool[] = [
   },
   {
     name: "jenkins_get_test_results",
-    description: "Get test results for a build (pass/fail counts, test suites)",
+    description:
+      "Get test results for a build (pass/fail counts, test suites). " +
+      "By default only failing/regression cases are returned to keep the response small; " +
+      "set includePassing=true to fetch every case including passes.",
     inputSchema: {
       type: "object",
       properties: {
@@ -299,6 +302,14 @@ const rawTools: Tool[] = [
         buildNumber: {
           type: "number",
           description: "Build number",
+        },
+        includePassing: {
+          type: "boolean",
+          description:
+            "Include passing/fixed test cases in the suites array (default: false). " +
+            "Leave false unless you specifically need the full case list — passing cases " +
+            "can balloon the response to many MB on large suites.",
+          default: false,
         },
       },
       required: ["jobName", "buildNumber"],

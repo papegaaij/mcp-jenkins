@@ -314,22 +314,57 @@ export class JenkinsClient {
     }
   }
 
-  // Get test results for a build
-  async getTestResults(jobName: string, buildNumber: number): Promise<any> {
+  // Get test results for a build.
+  //
+  // The full Jenkins testReport API can return tens of MB of JSON for large
+  // suites, with the bulk of the size coming from per-case `stdout`/`stderr`
+  // captures and from passing cases (which are rarely useful). That oversize
+  // response has historically crashed the MCP stdio transport. We use a
+  // Jenkins `tree=` filter to drop stdout/stderr server-side, and by default
+  // we strip passing cases on the client side so the JSON returned over MCP
+  // stays small and focused on actionable failures.
+  async getTestResults(
+    jobName: string,
+    buildNumber: number,
+    options: { includePassing?: boolean } = {},
+  ): Promise<any> {
+    const includePassing = options.includePassing === true
+    const tree =
+      "duration,passCount,failCount,skipCount," +
+      "suites[name,duration,timestamp," +
+      "cases[className,name,status,duration,errorDetails,errorStackTrace,age,skipped]]"
     try {
       const data = await httpGetJson<any>(
-        `${this.baseUrl}/job/${jobPath(jobName)}/${buildNumber}/testReport/api/json`,
-        { headers: this.headers() },
+        `${this.baseUrl}/job/${jobPath(jobName)}/${buildNumber}/testReport/api/json?tree=${encodeURIComponent(tree)}`,
+        { headers: this.headers(), timeoutMs: 120000 },
       )
+      const suitesRaw: any[] = Array.isArray(data.suites) ? data.suites : []
+      const suites = includePassing
+        ? suitesRaw
+        : suitesRaw
+            .map((s) => {
+              const cases = Array.isArray(s.cases)
+                ? s.cases.filter((c: any) => {
+                    const status = String(c.status || "").toUpperCase()
+                    return status !== "PASSED" && status !== "FIXED"
+                  })
+                : []
+              return cases.length ? { ...s, cases } : null
+            })
+            .filter(Boolean)
+      const passCount = data.passCount || 0
+      const failCount = data.failCount || 0
+      const skipCount = data.skipCount || 0
       return {
         jobName,
         buildNumber,
-        totalTests: data.totalCount || 0,
-        passedTests: data.passCount || 0,
-        failedTests: data.failCount || 0,
-        skippedTests: data.skipCount || 0,
+        totalTests: passCount + failCount + skipCount,
+        passedTests: passCount,
+        failedTests: failCount,
+        skippedTests: skipCount,
         duration: data.duration || 0,
-        suites: data.suites || [],
+        includePassing,
+        suites,
       }
     } catch (e: any) {
       if (e.message?.includes("HTTP 404")) {

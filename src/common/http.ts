@@ -5,9 +5,11 @@ export interface HttpClientOptions {
   headers?: Record<string, string>;
 }
 
+const DEFAULT_TIMEOUT_MS = 60000;
+
 export const httpGetJson = async <T>(url: string, init: RequestInit & { timeoutMs?: number } = {}): Promise<T> => {
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? 10000);
+  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   try {
     const res = await fetch(url, { ...init, signal: controller.signal });
     if (res.status === 401) throw Errors.authFailed();
@@ -23,7 +25,7 @@ export const httpGetJson = async <T>(url: string, init: RequestInit & { timeoutM
 
 export const httpGetText = async (url: string, init: RequestInit & { timeoutMs?: number } = {}): Promise<string> => {
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? 10000);
+  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   try {
     const res = await fetch(url, { ...init, signal: controller.signal });
     if (res.status === 401) throw Errors.authFailed();
@@ -39,7 +41,7 @@ export const httpGetText = async (url: string, init: RequestInit & { timeoutMs?:
 
 export const httpPost = async (url: string, init: RequestInit & { timeoutMs?: number } = {}): Promise<{ status: number; headers: Record<string, string | null> }> => {
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? 10000);
+  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   try {
     const res = await fetch(url, { method: 'POST', ...init, signal: controller.signal });
     if (res.status === 401) throw Errors.authFailed();
@@ -52,7 +54,7 @@ export const httpPost = async (url: string, init: RequestInit & { timeoutMs?: nu
 
 export const httpGetBuffer = async (url: string, init: RequestInit & { timeoutMs?: number } = {}): Promise<Buffer> => {
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? 10000);
+  const t = setTimeout(() => controller.abort(), init.timeoutMs ?? DEFAULT_TIMEOUT_MS);
   try {
     const res = await fetch(url, { ...init, signal: controller.signal });
     if (res.status === 401) throw Errors.authFailed();
