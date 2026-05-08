@@ -1,0 +1,1 @@
+{"version":3,"file":"cancel-queue.js","sourceRoot":"","sources":["../../src/tools/cancel-queue.ts"],"names":[],"mappings":"AAMA,MAAM,CAAC,MAAM,WAAW,GAAG,KAAK,EAAE,MAAqB,EAAE,KAAuB,EAAE,EAAE;IAClF,OAAO,MAAM,CAAC,WAAW,CAAC,KAAK,CAAC,OAAO,CAAC,CAAC;AAC3C,CAAC,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"get-test-results.js","sourceRoot":"","sources":["../../src/tools/get-test-results.ts"],"names":[],"mappings":"AAQA,MAAM,CAAC,MAAM,cAAc,GAAG,KAAK,EAAE,MAAqB,EAAE,KAA0B,EAAE,EAAE;IACxF,OAAO,MAAM,CAAC,cAAc,CAAC,KAAK,CAAC,OAAO,EAAE,KAAK,CAAC,WAAW,EAAE;QAC7D,cAAc,EAAE,KAAK,CAAC,cAAc;KACrC,CAAC,CAAC;AACL,CAAC,CAAC"}

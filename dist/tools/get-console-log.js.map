@@ -1,0 +1,1 @@
+{"version":3,"file":"get-console-log.js","sourceRoot":"","sources":["../../src/tools/get-console-log.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,MAAM,aAAa,GAAG,KAAK,EAAE,MAAqB,EAAE,KAAyB,EAAE,EAAE;IACtF,OAAO,MAAM,CAAC,aAAa,CAAC,KAAK,CAAC,OAAO,EAAE,KAAK,CAAC,WAAW,EAAE,KAAK,CAAC,gBAAgB,CAAC,CAAC;AACxF,CAAC,CAAC"}

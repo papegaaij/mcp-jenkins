@@ -1,0 +1,1 @@
+{"version":3,"file":"get-build-status.d.ts","sourceRoot":"","sources":["../../src/tools/get-build-status.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AAEzD,MAAM,WAAW,mBAAmB;IAAG,OAAO,EAAE,MAAM,CAAC;IAAC,WAAW,EAAE,MAAM,CAAA;CAAE;AAC7E,eAAO,MAAM,cAAc,GAAU,QAAQ,aAAa,EAAE,OAAO,mBAAmB,gEAErF,CAAC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"toggle-node-offline.d.ts","sourceRoot":"","sources":["../../src/tools/toggle-node-offline.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAA;AAExD,MAAM,WAAW,sBAAsB;IACrC,QAAQ,EAAE,MAAM,CAAA;IAChB,cAAc,CAAC,EAAE,MAAM,CAAA;CACxB;AAED,eAAO,MAAM,iBAAiB,GAC5B,QAAQ,aAAa,EACrB,OAAO,sBAAsB;;;EACoC,CAAA"}

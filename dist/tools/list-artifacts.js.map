@@ -1,0 +1,1 @@
+{"version":3,"file":"list-artifacts.js","sourceRoot":"","sources":["../../src/tools/list-artifacts.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,MAAM,aAAa,GAAG,KAAK,EAAE,MAAqB,EAAE,KAAyB,EAAE,EAAE;IACtF,OAAO,MAAM,CAAC,aAAa,CAAC,KAAK,CAAC,OAAO,EAAE,KAAK,CAAC,WAAW,CAAC,CAAC;AAChE,CAAC,CAAC"}

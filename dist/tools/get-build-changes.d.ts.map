@@ -1,0 +1,1 @@
+{"version":3,"file":"get-build-changes.d.ts","sourceRoot":"","sources":["../../src/tools/get-build-changes.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AAEzD,MAAM,WAAW,oBAAoB;IACnC,OAAO,EAAE,MAAM,CAAC;IAChB,WAAW,EAAE,MAAM,CAAC;CACrB;AAED,eAAO,MAAM,eAAe,GAAU,QAAQ,aAAa,EAAE,OAAO,oBAAoB,iBAEvF,CAAC"}

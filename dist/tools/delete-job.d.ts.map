@@ -1,0 +1,1 @@
+{"version":3,"file":"delete-job.d.ts","sourceRoot":"","sources":["../../src/tools/delete-job.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AAEzD,MAAM,WAAW,cAAc;IAC7B,OAAO,EAAE,MAAM,CAAC;CACjB;AAED,eAAO,MAAM,SAAS,GAAU,QAAQ,aAAa,EAAE,OAAO,cAAc;;;EAE3E,CAAC"}

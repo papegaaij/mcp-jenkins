@@ -1,7 +1,7 @@
 {
-  "name": "@kud/mcp-jenkins",
-  "version": "2.0.2",
-  "description": "Jenkins MCP server with bearer token authentication support",
+  "name": "@papegaaij/mcp-jenkins-deploy",
+  "version": "2.0.2-deploy.1",
+  "description": "Local-runtime build of @kud/mcp-jenkins with KeyHub-specific patches (filtered test results + per-case detail). Deploy-only fork; upstream-bound source patches live on the patch/large-test-reports branch.",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,7 +26,6 @@
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist",
-    "prepare": "npm run build",
     "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [

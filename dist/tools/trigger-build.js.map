@@ -1,0 +1,1 @@
+{"version":3,"file":"trigger-build.js","sourceRoot":"","sources":["../../src/tools/trigger-build.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,MAAM,YAAY,GAAG,KAAK,EAAE,MAAqB,EAAE,KAAwB,EAAE,EAAE;IACpF,OAAO,MAAM,CAAC,YAAY,CAAC,KAAK,CAAC,OAAO,EAAE,KAAK,CAAC,MAAM,CAAC,CAAC;AAC1D,CAAC,CAAC"}

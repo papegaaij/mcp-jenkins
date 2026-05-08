@@ -1,0 +1,1 @@
+{"version":3,"file":"safe-restart.d.ts","sourceRoot":"","sources":["../../src/tools/safe-restart.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAA;AAGxD,MAAM,WAAW,gBAAgB;IAC/B,OAAO,EAAE,OAAO,CAAA;CACjB;AAED,eAAO,MAAM,WAAW,GACtB,QAAQ,aAAa,EACrB,OAAO,gBAAgB;;EASxB,CAAA"}

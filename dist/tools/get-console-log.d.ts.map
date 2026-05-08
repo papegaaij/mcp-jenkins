@@ -1,0 +1,1 @@
+{"version":3,"file":"get-console-log.d.ts","sourceRoot":"","sources":["../../src/tools/get-console-log.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AAEzD,MAAM,WAAW,kBAAkB;IAAG,OAAO,EAAE,MAAM,CAAC;IAAC,WAAW,CAAC,EAAE,MAAM,CAAC;IAAC,gBAAgB,CAAC,EAAE,MAAM,CAAA;CAAE;AACxG,eAAO,MAAM,aAAa,GAAU,QAAQ,aAAa,EAAE,OAAO,kBAAkB;;;;;EAEnF,CAAC"}

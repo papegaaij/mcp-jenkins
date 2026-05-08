@@ -1,0 +1,1 @@
+{"version":3,"file":"get-test-results.d.ts","sourceRoot":"","sources":["../../src/tools/get-test-results.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AAEzD,MAAM,WAAW,mBAAmB;IAClC,OAAO,EAAE,MAAM,CAAC;IAChB,WAAW,EAAE,MAAM,CAAC;IACpB,cAAc,CAAC,EAAE,OAAO,CAAC;CAC1B;AAED,eAAO,MAAM,cAAc,GAAU,QAAQ,aAAa,EAAE,OAAO,mBAAmB,iBAIrF,CAAC"}

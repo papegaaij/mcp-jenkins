@@ -1,0 +1,1 @@
+{"version":3,"file":"get-artifact.d.ts","sourceRoot":"","sources":["../../src/tools/get-artifact.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AAEzD,MAAM,WAAW,gBAAgB;IAAG,OAAO,EAAE,MAAM,CAAC;IAAC,WAAW,EAAE,MAAM,CAAC;IAAC,YAAY,EAAE,MAAM,CAAA;CAAE;AAChG,eAAO,MAAM,WAAW,GAAU,QAAQ,aAAa,EAAE,OAAO,gBAAgB;;;;;EAE/E,CAAC"}
