@@ -30,7 +30,7 @@
 - **⚙️ Flexible Configuration** - CLI args or `MCP_JENKINS_*` env vars (priority-based)
 - **🔒 Tool Filtering** - Allowlist or blocklist tools via `MCP_JENKINS_ALLOW_TOOLS` / `MCP_JENKINS_BLOCK_TOOLS`
 - **🔀 Multi-Instance Support** - Connect to multiple Jenkins servers in one MCP entry, select per tool call
-- **🛠️ 37 Tools** - Comprehensive Jenkins API coverage
+- **🛠️ 39 Tools** - Comprehensive Jenkins API coverage
 - **⚡ Modern Stack** - TypeScript 5.3+, ES2023, Native Fetch API
 - **📦 MCP Protocol** - Native integration with Claude Desktop, Claude Code CLI
 - **🔄 Real-time Monitoring** - Build status, queue management, pipeline stages
@@ -698,13 +698,14 @@ Apply and restart the IDE.
 | `jenkins_get_build_changes`   | Get Git commits for build  |
 | `jenkins_get_pipeline_stages` | Get pipeline stage status  |
 
-### 🧪 Testing & Artifacts (3 tools)
+### 🧪 Testing & Artifacts (4 tools)
 
-| Tool                       | Description                |
-| -------------------------- | -------------------------- |
-| `jenkins_get_test_results` | Get test pass/fail counts  |
-| `jenkins_list_artifacts`   | List build artifacts       |
-| `jenkins_get_artifact`     | Download artifact (base64) |
+| Tool                       | Description                                                                |
+| -------------------------- | -------------------------------------------------------------------------- |
+| `jenkins_get_test_results` | Get test pass/fail counts (failing/skipped cases only by default)          |
+| `jenkins_get_test_case`    | Fetch a single case's stdout, stderr, and stack trace by class+case name   |
+| `jenkins_list_artifacts`   | List build artifacts                                                       |
+| `jenkins_get_artifact`     | Download artifact (base64)                                                 |
 
 ### 📊 Queue Management (2 tools)
 
