@@ -29,6 +29,7 @@ import { searchJobs } from "./tools/search-jobs.js"
 import { stopBuild } from "./tools/stop-build.js"
 import { deleteBuild } from "./tools/delete-build.js"
 import { getTestResults } from "./tools/get-test-results.js"
+import { getTestCase } from "./tools/get-test-case.js"
 import { getQueue } from "./tools/get-queue.js"
 import { cancelQueue } from "./tools/cancel-queue.js"
 import { enableJob } from "./tools/enable-job.js"
@@ -313,6 +314,41 @@ const rawTools: Tool[] = [
         },
       },
       required: ["jobName", "buildNumber"],
+    },
+  },
+  {
+    name: "jenkins_get_test_case",
+    description:
+      "Fetch a single test case's full detail (status, duration, errorDetails, " +
+      "errorStackTrace, stdout, stderr) by hitting Jenkins's per-case testReport URL. " +
+      "Use this to drill into a specific failure surfaced by jenkins_get_test_results " +
+      "without downloading the entire (potentially many-MB) report.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        jobName: {
+          type: "string",
+          description: "Name of the Jenkins job",
+        },
+        buildNumber: {
+          type: "number",
+          description: "Build number",
+        },
+        className: {
+          type: "string",
+          description:
+            "Fully-qualified class name of the test case " +
+            "(e.g. \"com.acme.FooTest\"), as reported by jenkins_get_test_results.",
+        },
+        caseName: {
+          type: "string",
+          description:
+            "Test case (method or Spock feature) name, exactly as reported by " +
+            "jenkins_get_test_results — including spaces. The server applies " +
+            "Jenkins's safe-name transform internally.",
+        },
+      },
+      required: ["jobName", "buildNumber", "className", "caseName"],
     },
   },
   {
@@ -676,6 +712,7 @@ const toolHandlers: Record<string, ToolHandler> = {
   jenkins_stop_build: stopBuild,
   jenkins_delete_build: deleteBuild,
   jenkins_get_test_results: getTestResults,
+  jenkins_get_test_case: getTestCase,
   jenkins_get_build_changes: getBuildChanges,
   jenkins_get_pipeline_stages: getPipelineStages,
   jenkins_replay_build: replayBuild,

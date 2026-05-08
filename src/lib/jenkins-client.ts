@@ -382,6 +382,87 @@ export class JenkinsClient {
     }
   }
 
+  // Fetch a single test case (with full stdout/stderr/stack trace) by
+  // hitting Jenkins's per-case testReport URL. This is the safe way to
+  // retrieve console output for a failing test without downloading the
+  // entire (potentially many-MB) report.
+  //
+  // Jenkins's JUnit plugin places each case under a "package" URL segment
+  // that is *not* always the FQCN package — many test result formats land
+  // every class under the `(root)` pseudo-package even though the class's
+  // FQCN includes a real package. We probe `(root)` first and fall back
+  // to the FQCN-derived package, so callers can pass either an FQCN or a
+  // simple class name and the right URL is found.
+  async getTestCase(
+    jobName: string,
+    buildNumber: number,
+    className: string,
+    caseName: string,
+  ): Promise<any> {
+    const lastDot = className.lastIndexOf(".")
+    const pkg = lastDot >= 0 ? className.substring(0, lastDot) : null
+    const cls = lastDot >= 0 ? className.substring(lastDot + 1) : className
+    // Jenkins JUnit plugin replaces path-unsafe characters and whitespace
+    // with '_' when generating per-case detail URLs. Dots are preserved.
+    const safe = (s: string) => s.replace(/[\\/?#&%*:|<>"\s]/g, "_")
+    const safeCls = safe(cls)
+    const safeMethod = safe(caseName)
+
+    // `(root)` must stay literal — encodeURIComponent would turn it into
+    // `%28root%29`, which Jenkins also accepts but the literal form is the
+    // canonical link used in the testReport HTML.
+    const candidates: string[] = []
+    candidates.push(`(root)/${safeCls}/${safeMethod}`)
+    if (pkg) {
+      candidates.push(`${encodeURIComponent(safe(pkg))}/${safeCls}/${safeMethod}`)
+    }
+
+    const attemptedUrls: string[] = []
+    let lastError: any = null
+    for (const path of candidates) {
+      const url = `${this.baseUrl}/job/${jobPath(jobName)}/${buildNumber}/testReport/${path}/api/json`
+      attemptedUrls.push(url)
+      try {
+        const data = await httpGetJson<any>(url, {
+          headers: this.headers(),
+          timeoutMs: 60000,
+        })
+        return {
+          jobName,
+          buildNumber,
+          className: data.className ?? className,
+          name: data.name ?? caseName,
+          status: data.status ?? null,
+          duration: data.duration ?? 0,
+          age: data.age ?? 0,
+          skipped: data.skipped ?? false,
+          skippedMessage: data.skippedMessage ?? null,
+          errorDetails: data.errorDetails ?? null,
+          errorStackTrace: data.errorStackTrace ?? null,
+          stdout: data.stdout ?? null,
+          stderr: data.stderr ?? null,
+          url,
+        }
+      } catch (e: any) {
+        if (e.message?.includes("HTTP 404")) {
+          lastError = e
+          continue
+        }
+        throw e
+      }
+    }
+    return {
+      jobName,
+      buildNumber,
+      className,
+      name: caseName,
+      message:
+        "Test case not found at any candidate URL. Verify className and caseName " +
+        "match the values reported by jenkins_get_test_results.",
+      attemptedUrls,
+    }
+  }
+
   // Get build queue
   async getQueue(): Promise<any[]> {
     try {
